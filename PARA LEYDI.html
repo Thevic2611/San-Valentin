@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Día de San Valentín</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+            background-color: #ffdde1;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        .gif-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .gif-container img {
+            position: absolute;
+            width: 175px;
+            height: auto;
+        }
+
+        .gif1 {
+            top: 25px;
+            left: 25px;
+        }
+
+        .gif2 {
+            top: 30px;
+            right: 30px;
+        }
+
+        .gif3 {
+            bottom: 30px;
+            left: 30px;
+        }
+
+        .gif4 {
+            bottom: 30px;
+            right: 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #e63946;
+            font-family: 'Great Vibes', cursive;
+            font-size: 36px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .gallery {
+            position: relative;
+            max-width: 100%;
+            margin-top: 20px;
+        }
+
+        .gallery img {
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            object-fit: cover;
+            display: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery img.active {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        button {
+            background: #e63946;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #d62839;
+        }
+    </style>
+</head>
+
+<body>
+    <audio autoplay loop>
+        <source src="Sabrina.mp3" type="audio/mpeg">
+    </audio>
+    <button onclick="document.querySelector('audio').play()">🎵 Reproducir música</button>
+    <div class="gif-container">
+        <img src="jesus.gif" class="gif1" alt="Decoración 1">
+        <img src="minie.gif" class="gif2" alt="Decoración 2">
+        <img src="play.gif" class="gif3" alt="Decoración 3">
+        <img src="junto.gif" class="gif4" alt="Decoración 4">
+    </div>
+    <div class="container">
+        <h1>Feliz Día de San Valentín, Leydi!</h1>
+        <p id="mensaje">Querida Leydi,</p>
+        <p id="mensaje-texto">Hoy quiero recordarte lo especial que eres para mí. Gracias por tu amistad, por cada risa
+            compartida y por estar siempre presente. ¡No imaginaba hacer esto por mi amigue!</p>
+        <div class="gallery">
+            <img src="1.jpg" class="active" alt="Foto 1" data-texto="Siempre AMIXS nunca ENEMIXS">
+            <img src="2.jpg" alt="Foto 2"
+                data-texto="Se que te molesto pero que es la vida sin una sonrisa, gracias por tu amistad!">
+            <img src="3.jpg" alt="Foto 3" data-texto="Espero que nuestra amistad dure para siempre, te quiero mucho!">
+        </div>
+        <div class="controls">
+            <button onclick="cambiarImagen(-1)">Anterior</button>
+            <button onclick="cambiarImagen(1)">Siguiente</button>
+        </div>
+    </div>
+    <script>
+        let index = 0;
+        const imagenes = document.querySelectorAll(".gallery img");
+        const mensajeTexto = document.getElementById("mensaje-texto");
+
+        function cambiarImagen(direccion) {
+            imagenes[index].classList.remove("active");
+            index = (index + direccion + imagenes.length) % imagenes.length;
+            imagenes[index].classList.add("active");
+            mensajeTexto.innerText = imagenes[index].dataset.texto;
+        }
+    </script>
+</body>
+
+</html>
